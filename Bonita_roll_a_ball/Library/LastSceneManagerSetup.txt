@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/roll_a_ball.unity
+  isLoaded: 1
+  isActive: 1
