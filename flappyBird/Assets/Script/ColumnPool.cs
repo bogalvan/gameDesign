@@ -20,6 +20,7 @@ public class ColumnPool : MonoBehaviour
 
     void Start()
     {
+        print("chello");
         timeSinceLastSpawned = 0f;
 
         //Initialize the columns collection.

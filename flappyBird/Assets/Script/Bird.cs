@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Bird : MonoBehaviour
 {
-    public float upForce;                   //Upward force of the "flap".
+    private float upForce = 200;                   //Upward force of the "flap".
     private bool isDead = false;            //Has the player collided with a wall?
 
     private Animator anim;                  //Reference to the Animator component.
     private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
-
+    private int flapNum = 0;
     void Start()
     {
         //Get reference to the Animator component attached to this GameObject.
@@ -25,6 +25,15 @@ public class Bird : MonoBehaviour
             //Look for input to trigger a "flap".
             if (Input.GetMouseButtonDown(0))
             {
+                flapNum++;
+                if(flapNum%5 == 0)
+                {
+                    upForce = 100;
+                }
+                else
+                {
+                    upForce = 200;
+                }
                 //...tell the animator about it and then...
                 anim.SetTrigger("Flap");
                 //...zero out the birds current y velocity before...
@@ -38,13 +47,13 @@ public class Bird : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        // Zero out the bird's velocity
-        rb2d.velocity = Vector2.zero;
-        // If the bird collides with something set it to dead...
-        isDead = true;
-        //...tell the Animator about it...
-        anim.SetTrigger("Die");
-        //...and tell the game control about it.
-        GameControl.instance.BirdDied();
+            // Zero out the bird's velocity
+            rb2d.velocity = Vector2.zero;
+            // If the bird collides with something set it to dead...
+            isDead = true;
+            //...tell the Animator about it...
+            anim.SetTrigger("Die");
+            //...and tell the game control about it.
+            GameControl.instance.BirdDied();
     }
 }
