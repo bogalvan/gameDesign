@@ -8,6 +8,7 @@ public class GrapplingHook : MonoBehaviour
     public bool ropeActive = false;
 
     private GameObject curHook;
+    public PlayerMovement playerMovement;
 
     // Update is called once per frame
     void Update(){
@@ -20,10 +21,10 @@ public class GrapplingHook : MonoBehaviour
             if (hit.collider.tag == "grappleObject")
             {
                 ropeActive = true;
-
                 GameObject player = GameObject.FindWithTag("Player");
                 player.GetComponent<CharacterController2D>().enabled = false;
                 player.GetComponent<PlayerMovement>().enabled = false;
+                player.SendMessage("isGrappling", true);
             }
                 
             if (ropeActive)
@@ -36,10 +37,10 @@ public class GrapplingHook : MonoBehaviour
         else if((Input.GetMouseButtonUp(0))){
             Destroy(curHook);
             ropeActive = false;
-
             GameObject player = GameObject.FindWithTag("Player");
             player.GetComponent<CharacterController2D>().enabled = true;
             player.GetComponent<PlayerMovement>().enabled = true;
+            player.SendMessage("isGrappling", false);
         }
     }
 }
