@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public enum PlayerState {idle, running, dashing, jumping, crawling, floating, grappling }
-
+    public CircleCollider2D playerCollider;
     //Animation 
     private Animator anim;
     public PlayerState playerState = PlayerState.running;
@@ -83,14 +83,14 @@ public class PlayerMovement : MonoBehaviour
         //Floating
         if (Input.GetButton("Float"))
         {
-            print("float");
+            //print("float");
             playerState = PlayerState.floating;
             if (rb2d.velocity.y < -0.1f)
                 rb2d.gravityScale = defaultGravity / 9f;
         }
         if (Input.GetButtonUp("Float"))
         {
-            print("float");
+            //print("float");
             playerState = PlayerState.floating;
             rb2d.gravityScale = defaultGravity;
         }
@@ -109,6 +109,11 @@ public class PlayerMovement : MonoBehaviour
         if(crouch == true)
         {
             playerState = PlayerState.crawling;
+            playerCollider.radius = .3f;
+        }
+        else
+        {
+            playerCollider.radius = .72f;
         }
         if (dash == true)
         {
@@ -121,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jump == true && playerState != PlayerState.floating)
         {
-            print("jump");
+            //print("jump");
             playerState = PlayerState.jumping;
         }
         //print(playerState);
@@ -156,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void isGrappling(bool isGrappling)
     {
-        print(isGrappling);
+        //print(isGrappling);
         if (isGrappling)
         {
             anim.SetTrigger("grapple");
