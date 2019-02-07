@@ -8,21 +8,24 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rb2d;
     public float speed;
     private Vector2 force;
+    public bool started = false;
+   
 
     void GoBall()
     {
+        started = true;
         float rand = Random.Range(0, 2);
         if (rand < 1)
         {
             force = new Vector2(20, Random.Range(12, -12));
             force = force.normalized; 
-            rb2d.AddForce(force*40);
+            rb2d.AddForce(force*60);
         }
         else
         {
             force = new Vector2(-20, Random.Range(12, -12));
             force = force.normalized;
-            rb2d.AddForce(force*40);
+            rb2d.AddForce(force*60);
         }
     }
 
@@ -30,7 +33,12 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        Invoke("GoBall", 1.5f);
+    }
+
+    public void startGame()
+    {
+        ResetBall();
+        Invoke("GoBall", 1f);
     }
 
     void ResetBall()

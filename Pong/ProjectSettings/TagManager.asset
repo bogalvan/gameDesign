@@ -9,6 +9,9 @@ TagManager:
   - RightWall
   - Button
   - gameObjects
+  - p1Text
+  - p2Text
+  - starfish
   layers:
   - Default
   - TransparentFX

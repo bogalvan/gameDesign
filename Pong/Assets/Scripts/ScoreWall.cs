@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ScoreWall : MonoBehaviour
 {
+    public GameManager gameManager;
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.name == "Ball")
         {
             string wallName = transform.name;
-            GameManager.Score(wallName);
-            col.gameObject.SendMessage("RestartGame", 1, SendMessageOptions.RequireReceiver);
+            gameManager.Score(wallName);
+
         }
     }
 }

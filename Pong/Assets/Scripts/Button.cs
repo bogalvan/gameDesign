@@ -13,7 +13,7 @@ public class Button : MonoBehaviour {
 
     void OnMouseDown()
     {
-        print("pressed");
+
         GameManager.buttonClicked();
 
     }
