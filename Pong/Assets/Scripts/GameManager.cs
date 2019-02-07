@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
         game = GameObject.FindGameObjectWithTag("gameObjects");
         createNewStarFish();
         createNewStarFish();
-        createNewStarFish();
 
         p1Text.text = "";
         p2Text.text = "";
