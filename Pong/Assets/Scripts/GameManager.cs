@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     public void createNewStarFish()
     {
         starfish = Instantiate(starfishPrefab);
-        starfish.transform.position = new Vector3(Random.Range(-5.5f, 5.5f), Random.Range(-3.5f, 3.5f), 0);
+        starfish.transform.position = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), 0);
     }
 
     public static void buttonClicked()

@@ -9,7 +9,10 @@ public class Ball : MonoBehaviour
     public float speed;
     private Vector2 force;
     public bool started = false;
-   
+
+    AudioSource fxSound;
+    public AudioClip bounceMusic;
+
 
     void GoBall()
     {
@@ -33,6 +36,9 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        fxSound = GetComponent<AudioSource>();
+        fxSound.playOnAwake = false;
+        fxSound.clip = bounceMusic;
     }
 
     public void startGame()
@@ -62,7 +68,7 @@ public class Ball : MonoBehaviour
             vel.y = (rb2d.velocity.y / 2.0f) + (col.collider.attachedRigidbody.velocity.y / 3.0f);
             vel = vel.normalized;
             rb2d.velocity = vel * speed;
-
+            fxSound.Play();
         }
     }
         
